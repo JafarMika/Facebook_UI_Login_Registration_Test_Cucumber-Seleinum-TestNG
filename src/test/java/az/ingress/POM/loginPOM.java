@@ -10,5 +10,6 @@ public class loginPOM {
     public final static By password =By.id("pass");
     public final static By loginBtn =By.name("login");
     public final static By errorMsj =By.cssSelector("div[class=_9ay7]");
+    public final static By Msj =By.xpath("(//*[contains(@class, 'x78zum5') and contains(@class, 'x1n2onr6')])[15]");
 
 }
