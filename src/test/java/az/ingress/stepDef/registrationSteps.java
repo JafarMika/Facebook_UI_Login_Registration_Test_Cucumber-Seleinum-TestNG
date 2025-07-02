@@ -1,106 +1,95 @@
 package az.ingress.stepDef;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import az.ingress.DriverUtils.DriverUtils;
+import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static az.ingress.DriverUtils.DriverUtils.getDriver;
 import static az.ingress.POM.registrationPOM.*;
-import static az.ingress.enums.ExpectedConditionsTypes.CLICKABLE;
-import static az.ingress.enums.ExpectedConditionsTypes.VISIBLE;
+import static az.ingress.enums.ExpectedConditionsTypes.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class registrationSteps extends BaseMethods {
 
-    //Scenario: yanlis parol ile daxil olmag calisiram //1
     @Given("facebook sehifesine klikleyirem")
     public void facebookSehifesineKlikleyirem() {
 
-        getDriver().get("https://www.facebook.com/");
-
+        DriverUtils.getDriver().get("https://www.facebook.com/");
     }
 
     @When("Create new account hissesine klikleyirem")
     public void createNewAccountHissesineKlikleyirem() {
-        explicitlyWait(30, newAccountBtn, VISIBLE);
-        getWebElement(newAccountBtn).click(); //When
-
+        explicitlyWait(10, newAccountBtn, CLICKABLE);
+        getWebElement(newAccountBtn).click();
     }
 
-    @And("firstname hissesini bos saxlayiram")
-    public void firstnameHissesiniBosSaxlayiram() {
-
-        // No action needed, just leaving the field empty
+    @And("ad {string} hissesini doldururam")
+    public void adHissesiniDoldururam(String arg0) {
+        if (!arg0.isEmpty()) {
+            explicitlyWait(10, firstName, VISIBLE);
+            getWebElement(firstName).sendKeys(arg0);
+        }
     }
 
-    @And("lastname hissesine istifadeci adini yaziram")
-    public void lastnameHissesineIstifadeciAdiniYaziram() {
-        explicitlyWait(5, lastName, CLICKABLE);
-        getWebElement(lastName).sendKeys("Ali"); //And
+    @And("soyad {string} hissesin doldururam")
+    public void soyadHissesinDoldururam(String arg0) {
+        if (!arg0.isEmpty()) {
+            explicitlyWait(10, lastName, VISIBLE);
+            getWebElement(lastName).sendKeys(arg0);
+        }
     }
 
-    @And("dogum tarixi gun yaziram")
-    public void dogumTarixiGunYaziram() {
+    @And("dogum tarixi {string} yaziram")
+    public void dogumTarixiYaziram(String arg0) {
+        if (!arg0.isEmpty()) {
+            String[] date = arg0.split(" ");
+            explicitlyWait(10, birthdayMonth, VISIBLE);
+            getWebElement(birthdayMonth).sendKeys(date[0]);
+            explicitlyWait(10, birthdayDay, VISIBLE);
+            getWebElement(birthdayDay).sendKeys(date[1]);
+            explicitlyWait(10, birthdayYear, VISIBLE);
+            getWebElement(birthdayYear).sendKeys(date[2]);
 
-        Select daySelect = new Select(getWebElement(birthdayDay));
-        daySelect.selectByVisibleText("15"); // Select a day from the dropdown
-
+        }
     }
 
-    @And("dogum tarixi ay yaziram")
-    public void dogumTarixiAyYaziram() {
-        Select monthSelect = new Select(getWebElement(birthdayMonth));
-        monthSelect.selectByVisibleText("May"); // Select a month from the dropdown
-
+    @And("cinsiyet {string} secimini edirem")
+    public void cinsiyetSeciminiEdirem(String arg0) {
+        if (!arg0.isEmpty()) {
+            explicitlyWait(10, genderMale, VISIBLE);
+            getWebElement(By.xpath("//*[text()='" + arg0 + "']")).click();
+        }
     }
 
-    @And("dogum tarixi il yaziram")
-    public void dogumTarixiIlYaziram() {
-        Select yearSelect = new Select(getWebElement(birthdayYear));
-        yearSelect.selectByVisibleText("1990"); // Select a year from the dropdown
+    @And("email {string} hissesini yaziram")
+    public void emailHissesiniYaziram(String arg0) {
+        if (!arg0.isEmpty()) {
+            explicitlyWait(10, email, VISIBLE);
+            getWebElement(email).sendKeys(arg0);
+
+        }
     }
 
-
-    @And("cinsiyet secimini edirem")
-    public void cinsiyetSeciminiEdirem() {
-
-        explicitlyWait(5, genderMale, CLICKABLE);
-        getWebElement(genderMale).click(); //And
+    @And("password {string} hissesini yaziram")
+    public void passwordHissesiniYaziram(String arg0) {
+        if (!arg0.isEmpty()) {
+            explicitlyWait(10, password, VISIBLE);
+            getWebElement(password).sendKeys(arg0);
+        }
     }
 
-    @And("email hissesine istifadeci emailini yaziram")
-    public void emailHissesineIstifadeciEmailiniYaziram() {
-        explicitlyWait(5, email, CLICKABLE);
-        getWebElement(email).sendKeys("+994555555555"); //And
-    }
-
-    @And("password hissesine parol yaziram")
-    public void passwordHissesineParolYaziram() {
-
-        explicitlyWait(5, password, CLICKABLE);
-        getWebElement(password).sendKeys("TestPassword123!"); //And
-    }
-
-    @And("signup duymesini klikleyirem")
+    @And("Sign Up duymesini klikleyirem")
     public void signupDuymesiniKlikleyirem() {
-        explicitlyWait(5, signUpBtn, CLICKABLE);
-        getWebElement(signUpBtn).click(); //And
-
+        explicitlyWait(10, signUpBtn, CLICKABLE);
+        getWebElement(signUpBtn).click();
     }
 
-    @Then("xeta mesaji ekranda gorunmelidir")
-    public void xetaMesajiEkrandaGorunmelidir() {
+    @Then("xeta mesaji {string} ekranda gorunmelidir")
+    public void xetaMesajiEkrandaGorunmelidir(String arg0) {
 
-        explicitlyWait(10, errorMsj, VISIBLE);
-        assertTrue(getWebElement(errorMsj).getText().contains("What’s your name?"));
-
+        explicitlyWait(10, errorMsjReg, VISIBLE);
+        String actualError = getWebElement(errorMsjReg).getText();
+        System.out.println("Gozlenilen error"+actualError);
+        assertEquals(actualError, arg0);
     }
 
 }

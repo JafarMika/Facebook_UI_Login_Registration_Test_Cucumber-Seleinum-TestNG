@@ -21,12 +21,12 @@ public class BaseMethods  {
     }
 
     public WebElement getWebElement(By locator){
-        return getDriver().findElement(locator);
+        return DriverUtils.getDriver().findElement(locator);
     }
 
 
     public void explicitlyWait(int seconds,By locator, ExpectedConditionsTypes conditions){
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(seconds));
+        wait = new WebDriverWait(DriverUtils.getDriver(), Duration.ofSeconds(seconds));
         switch (conditions){
             case CLICKABLE:
                 wait.until(ExpectedConditions.elementToBeClickable(locator));
