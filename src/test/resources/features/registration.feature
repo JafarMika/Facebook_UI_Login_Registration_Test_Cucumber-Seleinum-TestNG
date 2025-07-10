@@ -22,5 +22,5 @@ Feature: Registration Facebook
       | cinsi bos buraxib     | ali  | aliyev  | Mar 7 1999 |         | +994557147856 | sakir1225 | Please choose a gender. You can change who can see this later.                             |
       | 2025 tarixle          | vali | aliyev  | Jul 5 2025 | Custom  | +994557147857 | sakir1223 | It looks like you entered the wrong info. Please be sure to use your real birthday.        |
       | parolu bos buraxib    | ali  | valiyev | Aug 4 1994 | Male    | +994557147858 |           | Enter a combination of at least six numbers, letters and punctuation marks (like ! and &). |
-      | parolu uygunsuz yazib | vali | aliyev  | Sep 3 1993 | Male    | wwwwwwww      | sakir1223 | Please enter a valid mobile number or email address.                                       |
+      | emaili uygunsuz yazib | vali | aliyev  | Sep 3 1993 | Male    | wwwwwwww      | sakir1223 | Please enter a valid mobile number or email address.                                       |
 

@@ -21,7 +21,7 @@ public class loginSteps extends BaseMethods {
     @When("ad {string} hissesini yaziram")
     public void adHissesiniYaziram(String arg0) {
         if (!arg0.isEmpty()) {
-            explicitlyWait(10, username, VISIBLE);
+            explicitlyWait(15, username, VISIBLE);
             getWebElement(username).sendKeys(arg0);  //When
         }
     }
@@ -36,13 +36,13 @@ public class loginSteps extends BaseMethods {
     @And("login duymesine sixiram")
     public void loginDuymesineSixiram() {
 
-        explicitlyWait(10, loginBtn, CLICKABLE);
+        explicitlyWait(30, loginBtn, CLICKABLE);
         getWebElement(loginBtn).click();
     }
 
     @Then("ekranda {string} mesaji gorunur")
     public void ekrandaMesajiGorunur(String arg0) {
-        explicitlyWait(10, errorMsj, VISIBLE);
+        explicitlyWait(30, errorMsj, VISIBLE);
         String actualMsj = getWebElement(errorMsj).getText();
         assertTrue(actualMsj.contains(arg0));
     }

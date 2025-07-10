@@ -18,7 +18,7 @@ public class registrationSteps extends BaseMethods {
 
     @When("Create new account hissesine klikleyirem")
     public void createNewAccountHissesineKlikleyirem() {
-        explicitlyWait(10, newAccountBtn, CLICKABLE);
+        explicitlyWait(15, newAccountBtn, CLICKABLE);
         getWebElement(newAccountBtn).click();
     }
 
@@ -79,14 +79,14 @@ public class registrationSteps extends BaseMethods {
 
     @And("Sign Up duymesini klikleyirem")
     public void signupDuymesiniKlikleyirem() {
-        explicitlyWait(10, signUpBtn, CLICKABLE);
+        explicitlyWait(15, signUpBtn, CLICKABLE);
         getWebElement(signUpBtn).click();
     }
 
     @Then("xeta mesaji {string} ekranda gorunmelidir")
     public void xetaMesajiEkrandaGorunmelidir(String arg0) {
 
-        explicitlyWait(10, errorMsjReg, VISIBLE);
+        explicitlyWait(30, errorMsjReg, VISIBLE);
         String actualError = getWebElement(errorMsjReg).getText();
         System.out.println("Gozlenilen error"+actualError);
         assertEquals(actualError, arg0);

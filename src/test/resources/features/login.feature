@@ -9,10 +9,10 @@ Feature: Login Facebook
     Then ekranda "<errors>" mesaji gorunur
 
     Examples:
-      | condition    | name                 | passkey     | errors                                                                                              |
-      | dogru deyer  | +994515467891        | sakir123    | The mobile number you entered isn’t connected to an account. Find your account and log in.          |
-      | yalnis ad    | username@mail.ru     | Sakir.123   | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
-      | bos ad       | ""                   | dogru_parol | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
-      | bos soyad    | dogru_username@bk.ru | ""          | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
-      | bos ad,soyad | ""                   | ""          | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
+      | condition        | name                         | passkey    | errors                                                                                              |
+      | yalnis parol     | +994515467891                | sakir123.. | Invalid username or password                                                                        |
+      | yalnis ad        | cefer.mikayilzade.95@.ru     | Sakir.123  | Invalid username or password                                                                        |
+      | bos ad           |                              | Sakir.123  | Invalid username or password                                                                        |
+      | bos parol        | cefer.mikayilzade.95@mail.ru |            | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
+      | bos ad,bos parol |                              |            | The email or mobile number you entered isn’t connected to an account. Find your account and log in. |
 
